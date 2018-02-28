@@ -1,0 +1,24 @@
+// Core CSS
+// Variables
+$groundTileSize:  256px;
+
+
+// HTML Elements
+body{
+  height: 100vh;
+  width: 100vw;
+  background-image: linear-gradient(#1c8dff, #85eaef);
+}
+
+// ID's
+#ground{
+  height: $groundTileSize;
+  width: 100vw;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  background:{
+    image: url('../css/imgs/groundTile256.jpg') repeat-x;
+    size: $groundTileSize;
+  }
+}
