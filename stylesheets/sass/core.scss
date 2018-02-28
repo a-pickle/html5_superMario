@@ -1,7 +1,9 @@
 // Core CSS
 // Variables
-$groundTileSize:  256px;
+$groundTileSize:  22vh;
+$cloudDivSize: 125px;
 
+// Placeholders
 
 // HTML Elements
 body{
@@ -10,13 +12,210 @@ body{
   background-image: linear-gradient(#1c8dff, #85eaef);
 }
 
+// Classes
+.cloudLayer{
+  position: fixed;
+  top: 0vh;
+  left: 0vw;
+  height:40vh;
+  width: 100vw;
+  display: flex;
+  justify-content: flex-start;
+  // background-color: #000000;
+}
+
+.cloud{
+  background: url('imgs/cloudTile.png') no-repeat;
+  background-size: contain;
+
+  animation:{
+    name: movingCloud;
+    iteration-count: infinite;
+  }
+  animation-timing-function: ease;
+}
+
+.playArea{
+  position: fixed;
+  top: 40vh;
+  left: 0vw;
+  height: 40vh;
+  width: 100vw;
+  // background-color: #00ff00;
+}
+
+.blocks{
+  position: relative;
+  top: 5vh;
+  left: 10vw;
+  height: 10vh;
+  // width: 33vw;
+  display: flex;
+  justify-content: flex-start;
+  box-sizing: border-box;
+
+  // background-color: #ff0000;
+}
+
+.questionBlock{
+  position: relative;
+  top: 0vh;
+  left: 0vw;
+  height: inherit;
+  width: 63px;
+  // background-color: #0000ff;
+  background: url('imgs/questionBlockTile.png') no-repeat;
+  background-size: contain;
+  transition: .1s;
+
+  &:hover{
+    top: -2vh;
+    transition: .1s;
+  }
+}
+
+.brickBlock{
+  position: relative;
+  top: 0vh;
+  left: 0vw;
+  height: inherit;
+  width: 63px;
+  background: url('imgs/brickBlockTile.png') no-repeat;
+  background-size: contain;
+}
+
+.pipe{
+  background: url('imgs/pipeTile.png') no-repeat;
+  background-size: contain;
+}
+
+// Animations
+@keyframes movingCloud{
+  0%{
+    transform: translateX(0px);
+  }
+  50%{
+    transform: translateX(150px);
+  }
+  100%{
+    transform: translateX(0px);
+  }
+}
+
+@keyframes piranhaPlantMotion{
+  0%{
+    transform: translateY(0vh);
+  }
+  25%{
+    transform: translateY(-24vh);
+  }
+  75%{
+    transform: translateY(-24vh);
+  }
+  100%{
+    transform: translateY(0vh);
+  }
+}
+
+@keyframes piranhaPlantBite{
+  0%{
+    background: url('imgs/piranhaPlantOpen.png') no-repeat;
+    background-size: contain;
+  }
+  50%{
+    background: url('imgs/piranhaPlantClosed.png') no-repeat;
+    background-size: contain;
+  }
+  100%{
+    background: url('imgs/piranhaPlantOpen.png') no-repeat;
+    background-size: contain;
+  }
+}
+
+@keyframes coinPop {
+  0%{
+    top: 0vh;
+  }
+  // Try making a transparent question block on top of a brick block?
+}
+
 // ID's
+#c1{
+  height: $cloudDivSize;
+  width: $cloudDivSize;
+  position: relative;;
+  top: 0vh;
+  left: 15vw;
+
+  animation-duration: 16s;
+  animation-delay: 1s;
+}
+
+#c2{
+  height: 1.5 * $cloudDivSize;
+  width: 1.5 * $cloudDivSize;
+  position: relative;;
+  top: 0vh;
+  left: 18vw;
+
+  animation-duration: 20s;
+  animation-delay: .33s;
+}
+
+#c3{
+  height: 2.5 * $cloudDivSize;
+  width: 2.5 * $cloudDivSize;
+  position: relative;
+  top: 0vh;
+  left: 25vw;
+
+  animation-duration: 12s;
+  animation-delay: .66s;
+}
+
+#p1{
+  position: absolute;
+  top: 5vh;
+  left: 45vw;
+  height: 100vh;
+  width: 10vw;
+}
+
+#p2{
+  position: absolute;
+  top: 0vh;
+  left: 65vw;
+  height: 100vh;
+  width: 10vw;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+}
+
+#plant{
+  position: relative;
+  top: 0vh;
+  left: 66vw;
+  height: 90vh;
+  width: 7.5vw;
+  z-index: 0;
+  background: url('imgs/piranhaPlantClosed.png') no-repeat;
+  background-size: contain;
+
+  animation-name: piranhaPlantMotion, piranhaPlantBite;
+  animation-iteration-count: infinite;
+  animation-duration: 3s, .25s;
+  animation-timing-function: ease;
+}
+
+
 #ground{
   height: $groundTileSize;
   width: 100vw;
   position: fixed;
   left: 0;
   bottom: 0;
-  background: url('../css/imgs/groundTile256.jpg') repeat-x;
-  background-size: $groundTileSize;
+  z-index: 1;
+  background: url('imgs/groundTile256.jpg') repeat-x;
+  background-size: contain;
 }
